@@ -26,6 +26,11 @@ public class Controller : ScriptableObject
         return new Vector2(horizInput, vertInput);
     }
 
+    internal bool IsSprinting()
+    {
+        return Input.GetButton(sprintButton);
+    }
+
     public bool IsJumping()
     {
         return Input.GetButtonDown(jumpButton);
