@@ -16,3 +16,6 @@ MonoBehaviour:
   verticalAxis: Vertical
   jumpButton: Jump
   sprintButton: Run
+  mouseXInputName: Mouse X
+  mouseYInputName: Mouse Y
+  mouseSensitivity: 100
