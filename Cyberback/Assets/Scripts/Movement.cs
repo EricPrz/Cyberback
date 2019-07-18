@@ -47,10 +47,10 @@ public class Movement : MonoBehaviour
 
         Vector2 movementQtt = controller.getMovement() * movementSpeed;
 
-        //Vector3 rightMovement = transform.right * horizInput;
-        //Vector3 forwardMovement = transform.forward * vertInput;
+        Vector3 rightMovement = transform.right * movementQtt.x;
+        Vector3 forwardMovement = transform.forward * movementQtt.y;
                    
-        charController.SimpleMove(movementQtt/*forwardMovement + rightMovement*/);
+        charController.SimpleMove(forwardMovement + rightMovement);
 
         
 

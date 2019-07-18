@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d459f80f78b53a8409abb20d32af80af, type: 3}
   m_Name: Player2
   m_EditorClassIdentifier: 
-  horizontalAxis: Horizontal2
+  horizontalAxis: Horizontal
   verticalAxis: 
   jumpButton: 
   sprintButton: 
