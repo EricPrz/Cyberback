@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    [SerializeField] private string horizontalInputName;
-    [SerializeField] private string verticalInputName;
+
     [SerializeField] private float movementSpeed;
+    [SerializeField] private float walkSpeed;
     [SerializeField] private float sprintSpeed;
+    [SerializeField] private float jumpMultiplier;
+    [SerializeField] private AnimationCurve jumpFallOff;
+
+    [SerializeField] private Controller controller;
 
     private CharacterController charController;
 
-    [SerializeField] private AnimationCurve jumpFallOff;
-    [SerializeField] private float jumpMultiplier;
-    [SerializeField] private KeyCode jumpKey;
+
+
 
 
     private bool isJumping;
@@ -25,35 +28,37 @@ public class Movement : MonoBehaviour
         
     private void Update()
     {
-        PlayerMovement();
-        
         if (Input.GetKey(KeyCode.LeftShift))
         {
             movementSpeed = sprintSpeed;
         }
         else
         {
-            movementSpeed = 3;
+            movementSpeed = walkSpeed;
         }
-    }
-          
-    private void PlayerMovement()
-    {
-        float horizInput = Input.GetAxis(horizontalInputName) * movementSpeed;
-        float vertInput = Input.GetAxis(verticalInputName) * movementSpeed;
 
-        Vector3 rightMovement = transform.right * horizInput;
-        Vector3 forwardMovement = transform.forward * vertInput;
-                   
-        charController.SimpleMove(forwardMovement + rightMovement);
+        AxisMovement();
 
         JumpInput();
+    }
+          
+    private void AxisMovement()
+    {
+
+        Vector2 movementQtt = controller.getMovement() * movementSpeed;
+
+        //Vector3 rightMovement = transform.right * horizInput;
+        //Vector3 forwardMovement = transform.forward * vertInput;
+                   
+        charController.SimpleMove(movementQtt/*forwardMovement + rightMovement*/);
+
+        
 
     }
 
     private void JumpInput()
     {
-        if (Input.GetKeyDown(jumpKey) && !isJumping)
+        if (controller.IsJumping() && !isJumping)
         {
             isJumping = true;
             StartCoroutine(JumpEvent());
