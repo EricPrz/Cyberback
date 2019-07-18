@@ -267,7 +267,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa624cdb850b34a46ae4f1f32ba4fc3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseXInputName: Mouse X
-  mouseYInputName: Mouse Y
-  mouseSensitivity: 65
   playerBody: {fileID: 7580102253014802414}
+  controller: {fileID: 11400000, guid: 670ce31455561d242b39dd6c6295087e, type: 2}

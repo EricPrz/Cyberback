@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+#pragma warning disable 0649
 public class PlayerLook : MonoBehaviour
 {
-    [SerializeField] private string mouseXInputName, mouseYInputName;
-    [SerializeField] private float mouseSensitivity;
 
     [SerializeField] private Transform playerBody;
+    [SerializeField] private Controller controller;
 
     private float xAxisClamp;
 
@@ -30,8 +30,8 @@ public class PlayerLook : MonoBehaviour
 
     private void CameraRotation()
     {
-        float mouseX = Input.GetAxis(mouseXInputName) * mouseSensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis(mouseYInputName) * mouseSensitivity * Time.deltaTime;
+        float mouseX = controller.MovementMouseX(Time.deltaTime);
+        float mouseY = controller.MovementMouseY(Time.deltaTime);
 
         xAxisClamp += mouseY;
 
