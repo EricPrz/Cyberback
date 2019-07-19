@@ -19,4 +19,4 @@ MonoBehaviour:
   shootButton: Fire1
   mouseXInputName: AimX1
   mouseYInputName: AimY1
-  mouseSensitivity: 65
+  mouseSensitivity: 40

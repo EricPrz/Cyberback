@@ -14,12 +14,13 @@ public class Player : MonoBehaviour
     [SerializeField] private float hp;
     [SerializeField] private Text hpText;
 
+
     public float hit(float damage)
     {
         return SetHpTo(hp - damage);
     }
 
-    public float heal(float quantity)
+    public float health(float quantity)
     {
         return SetHpTo(hp + quantity);
     }
@@ -29,5 +30,6 @@ public class Player : MonoBehaviour
         hp = newHp;
         hpText.text = newHp.ToString();
         return hp;
-    }
+    }     
+
 }

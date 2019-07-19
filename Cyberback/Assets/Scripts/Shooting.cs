@@ -8,9 +8,11 @@ public class Shooting : MonoBehaviour
 {
 
     [SerializeField] private Player player;
+    [SerializeField] private float fireRate;
 
+    private float nextFire = 0;
     private Camera fpsCam;
-
+    
     private void Start()
     {
         fpsCam = GetComponent<Camera>();
@@ -18,9 +20,9 @@ public class Shooting : MonoBehaviour
 
     private void Update()
     {
-        if (player.controller.IsShooting())
+        if (player.controller.IsShooting() && Time.time >= nextFire)
         {
-            //Comprovacio cadencia
+            nextFire = Time.time + fireRate;
             Shoot();
         }
     }

@@ -621,3 +621,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 7292711635929139440}
+  fireRate: 1.5
