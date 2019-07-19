@@ -16,6 +16,7 @@ MonoBehaviour:
   verticalAxis: Vertical
   jumpButton: Jump
   sprintButton: LeftShift
+  shootButton: Fire1
   mouseXInputName: Mouse X
   mouseYInputName: Mouse Y
   mouseSensitivity: 65

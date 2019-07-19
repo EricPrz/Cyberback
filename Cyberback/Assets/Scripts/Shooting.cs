@@ -6,16 +6,19 @@ using UnityEngine;
 #pragma warning disable 0649
 public class Shooting : MonoBehaviour
 {
-    [SerializeField] private float damage;
-    [SerializeField] private float range;
-    [SerializeField] private Controller controller;
 
-    public Camera fpsCam;
+    [SerializeField] private Player player;
 
+    private Camera fpsCam;
+
+    private void Start()
+    {
+        fpsCam = GetComponent<Camera>();
+    }
 
     private void Update()
     {
-        if (controller.StartShoot())
+        if (player.controller.StartShoot())
         {
             Shoot();
         }
@@ -24,9 +27,15 @@ public class Shooting : MonoBehaviour
     private void Shoot ()
     {
         RaycastHit hit;
-        if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
+        if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, player.range))
         {
-            Debug.Log(hit.transform.name);
+            Player playerHit = hit.transform.gameObject.GetComponent<Player>();
+
+            if (playerHit != null)
+            {
+                playerHit.hit(player.damage);
+            }
+
         }
     }
 }

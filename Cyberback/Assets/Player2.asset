@@ -16,6 +16,7 @@ MonoBehaviour:
   verticalAxis: LeftAnalogY2
   jumpButton: A2
   sprintButton: LeftAnalogPress2
+  shootButton: Fire1
   mouseXInputName: RightAnalogX2
   mouseYInputName: RightAnalogY2
   mouseSensitivity: 100

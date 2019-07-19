@@ -12,7 +12,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private float jumpMultiplier;
     [SerializeField] private AnimationCurve jumpFallOff;
 
-    [SerializeField] private Controller controller;
+    [SerializeField] private Player player;
 
     private CharacterController charController;
 
@@ -46,7 +46,7 @@ public class Movement : MonoBehaviour
     private void AxisMovement()
     {
 
-        Vector2 movementQtt = controller.getMovement() * movementSpeed;
+        Vector2 movementQtt = player.controller.getMovement() * movementSpeed;
 
         Vector3 rightMovement = transform.right * movementQtt.x;
         Vector3 forwardMovement = transform.forward * movementQtt.y;
@@ -59,7 +59,7 @@ public class Movement : MonoBehaviour
 
     private void JumpInput()
     {
-        if (controller.IsJumping() && !isJumping)
+        if (player.controller.IsJumping() && !isJumping)
         {
             isJumping = true;
             StartCoroutine(JumpEvent());

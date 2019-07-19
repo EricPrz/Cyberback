@@ -7,7 +7,7 @@ public class PlayerLook : MonoBehaviour
 {
 
     [SerializeField] private Transform playerBody;
-    [SerializeField] private Controller controller;
+    [SerializeField] private Player player;
 
     private float xAxisClamp;
 
@@ -30,8 +30,8 @@ public class PlayerLook : MonoBehaviour
 
     private void CameraRotation()
     {
-        float mouseX = controller.MovementMouseX(Time.deltaTime);
-        float mouseY = controller.MovementMouseY(Time.deltaTime);
+        float mouseX = player.controller.MovementMouseX(Time.deltaTime);
+        float mouseY = player.controller.MovementMouseY(Time.deltaTime);
 
         xAxisClamp += mouseY;
 
