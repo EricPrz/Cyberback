@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d459f80f78b53a8409abb20d32af80af, type: 3}
   m_Name: Player1
   m_EditorClassIdentifier: 
-  horizontalAxis: Horizontal
-  verticalAxis: Vertical
-  jumpButton: Jump
-  sprintButton: LeftShift
+  horizontalAxis: MoveX1
+  verticalAxis: MoveY1
+  jumpButton: Jump1
+  sprintButton: Sprint1
   shootButton: Fire1
-  mouseXInputName: Mouse X
-  mouseYInputName: Mouse Y
+  mouseXInputName: AimX1
+  mouseYInputName: AimY1
   mouseSensitivity: 65

@@ -29,7 +29,7 @@ public class Movement : MonoBehaviour
         
     private void Update()
     {
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (player.controller.IsSprinting())
         {
             movementSpeed = sprintSpeed;
         }

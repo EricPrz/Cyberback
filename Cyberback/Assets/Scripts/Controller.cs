@@ -21,14 +21,10 @@ public class Controller : ScriptableObject
     [SerializeField] private string mouseYInputName;
     [SerializeField] private float mouseSensitivity;
 
-    public bool StartShoot()
-    {
-        return Input.GetButtonDown(shootButton);
-    }
 
     public bool IsShooting()
     {
-        return Input.GetButton(shootButton);
+        return Input.GetAxis(shootButton) > 0;
     }
 
     public Vector2 getMovement()

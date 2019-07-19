@@ -18,8 +18,9 @@ public class Shooting : MonoBehaviour
 
     private void Update()
     {
-        if (player.controller.StartShoot())
+        if (player.controller.IsShooting())
         {
+            //Comprovacio cadencia
             Shoot();
         }
     }
