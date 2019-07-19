@@ -4,19 +4,32 @@ using System.Collections.Generic;
 using UnityEngine;
 
 #pragma warning disable 0649
-[CreateAssetMenu(fileName = "New Controller", menuName = "Controller") ]
+[CreateAssetMenu(fileName = "New Controller", menuName = "Controller")]
 public class Controller : ScriptableObject
 {
     [Header("Movement")]
     [SerializeField] private string horizontalAxis;
     [SerializeField] private string verticalAxis;
+
+
     [SerializeField] private string jumpButton;
     [SerializeField] private string sprintButton;
+    [SerializeField] private string shootButton;
 
     [Header("Aim")]
     [SerializeField] private string mouseXInputName;
     [SerializeField] private string mouseYInputName;
     [SerializeField] private float mouseSensitivity;
+
+    public bool StartShoot()
+    {
+        return Input.GetButtonDown(shootButton);
+    }
+
+    public bool IsShooting()
+    {
+        return Input.GetButton(shootButton);
+    }
 
     public Vector2 getMovement()
     {
@@ -46,4 +59,5 @@ public class Controller : ScriptableObject
         return Input.GetAxis(mouseYInputName) * mouseSensitivity * deltaTime;
     }
 
+    
 }

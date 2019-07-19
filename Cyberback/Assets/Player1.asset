@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d459f80f78b53a8409abb20d32af80af, type: 3}
   m_Name: Player1
   m_EditorClassIdentifier: 
-  horizontalAxis: LeftAnalogX1
-  verticalAxis: LeftAnalogY1
-  jumpButton: A1
-  sprintButton: LeftAnalogPress1
-  mouseXInputName: RightAnalogX1
-  mouseYInputName: RightAnalogY1
-  mouseSensitivity: 100
+  horizontalAxis: Horizontal
+  verticalAxis: Vertical
+  jumpButton: Jump
+  sprintButton: LeftShift
+  mouseXInputName: Mouse X
+  mouseYInputName: Mouse Y
+  mouseSensitivity: 65
