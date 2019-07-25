@@ -17,6 +17,7 @@ MonoBehaviour:
   jumpButton: Jump1
   sprintButton: Sprint1
   shootButton: Fire1
+  swapWeaponButton: SwapWeapon1
   mouseXInputName: AimX1
   mouseYInputName: AimY1
   mouseSensitivity: 40

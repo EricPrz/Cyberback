@@ -9,8 +9,8 @@ public class Player : MonoBehaviour
 {
 
     [SerializeField] public Controller controller;
-    [SerializeField] public float damage;
-    [SerializeField] public float range;
+    //[SerializeField] public float damage;
+    //[SerializeField] public float range;
     private float currentHp;
     [SerializeField] private float maxHp;
     [SerializeField] private Text hpText;
@@ -19,10 +19,16 @@ public class Player : MonoBehaviour
     private float timeRemainingToHeal;
     [SerializeField] private float healingPerSecond;
 
+    [SerializeField] private Weapon[] weapons;
+    [HideInInspector] public Weapon currentWeapon;
+    [HideInInspector] private int currentWeaponNumnber;
+    [SerializeField] private Text weaponText;
+
 
     void Start()
     {
         currentHp = maxHp;
+        SetCurrentWeapon(0);
     }
 
     public float Hit(float damage)
@@ -50,6 +56,22 @@ public class Player : MonoBehaviour
         if(currentHp < maxHp)
             if (timeRemainingToHeal <= 0)
                 Heal(healingPerSecond * Time.deltaTime);
+
+
+        if (controller.IsSwapingWeapon())
+        {
+            int newweaponnumber = currentWeaponNumnber + 1;
+            if (newweaponnumber > weapons.Length - 1)
+                newweaponnumber = 0;
+
+            SetCurrentWeapon(newweaponnumber);
+        }
     }
 
+    private void SetCurrentWeapon(int weaponNumber)
+    {
+        currentWeaponNumnber = weaponNumber;
+        currentWeapon = weapons[currentWeaponNumnber];
+        weaponText.text = currentWeapon.ToString();
+    }
 }

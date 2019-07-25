@@ -8,7 +8,7 @@ public class Shooting : MonoBehaviour
 {
 
     [SerializeField] private Player player;
-    [SerializeField] private float fireRate;
+    //[SerializeField] private float fireRate;
 
     private float nextFire = 0;
     private Camera fpsCam;
@@ -22,7 +22,7 @@ public class Shooting : MonoBehaviour
     {
         if (player.controller.IsShooting() && Time.time >= nextFire)
         {
-            nextFire = Time.time + fireRate;
+            nextFire = Time.time + player.currentWeapon.fireRate;
             Shoot();
         }
     }
@@ -30,13 +30,13 @@ public class Shooting : MonoBehaviour
     private void Shoot ()
     {
         RaycastHit hit;
-        if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, player.range))
+        if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, player.currentWeapon.range))
         {
             Player playerHit = hit.transform.gameObject.GetComponent<Player>();
 
             if (playerHit != null)
             {
-                playerHit.Hit(player.damage);
+                playerHit.Hit(player.currentWeapon.damage);
             }
 
         }

@@ -15,12 +15,18 @@ public class Controller : ScriptableObject
     [SerializeField] private string jumpButton;
     [SerializeField] private string sprintButton;
     [SerializeField] private string shootButton;
+    [SerializeField] private string swapWeaponButton;
 
     [Header("Aim")]
     [SerializeField] private string mouseXInputName;
     [SerializeField] private string mouseYInputName;
     [SerializeField] private float mouseSensitivity;
 
+
+    public bool IsSwapingWeapon()
+    {
+        return Input.GetButtonDown(swapWeaponButton);
+    }
 
     public bool IsShooting()
     {
