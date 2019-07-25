@@ -36,7 +36,7 @@ public class Shooting : MonoBehaviour
 
             if (playerHit != null)
             {
-                playerHit.hit(player.damage);
+                playerHit.Hit(player.damage);
             }
 
         }

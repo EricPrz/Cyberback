@@ -11,25 +11,45 @@ public class Player : MonoBehaviour
     [SerializeField] public Controller controller;
     [SerializeField] public float damage;
     [SerializeField] public float range;
-    [SerializeField] private float hp;
+    private float currentHp;
+    [SerializeField] private float maxHp;
     [SerializeField] private Text hpText;
 
+    [SerializeField] private float timeToHeal;
+    private float timeRemainingToHeal;
+    [SerializeField] private float healingPerSecond;
 
-    public float hit(float damage)
+
+    void Start()
     {
-        return SetHpTo(hp - damage);
+        currentHp = maxHp;
     }
 
-    public float health(float quantity)
+    public float Hit(float damage)
     {
-        return SetHpTo(hp + quantity);
+        timeRemainingToHeal = timeToHeal;
+        return SetHpTo(currentHp - damage);
+    }
+
+    public float Heal(float quantity)
+    {
+        return SetHpTo(currentHp + quantity);
     }
 
     private float SetHpTo(float newHp)
     {
-        hp = newHp;
-        hpText.text = newHp.ToString();
-        return hp;
-    }     
+        currentHp = Mathf.Clamp( newHp, 0f, maxHp );
+        hpText.text = currentHp.ToString();
+        return currentHp;
+    }    
+    
+    private void Update()
+    {
+        timeRemainingToHeal -= Time.deltaTime;
+
+        if(currentHp < maxHp)
+            if (timeRemainingToHeal <= 0)
+                Heal(healingPerSecond * Time.deltaTime);
+    }
 
 }

@@ -475,8 +475,10 @@ MonoBehaviour:
   controller: {fileID: 11400000, guid: 670ce31455561d242b39dd6c6295087e, type: 2}
   damage: 10
   range: 100
-  hp: 99
+  maxHp: 100
   hpText: {fileID: 5823118649597521867}
+  timeToHeal: 5
+  healingPerSecond: 10
 --- !u!114 &7580102253014802413
 MonoBehaviour:
   m_ObjectHideFlags: 0
