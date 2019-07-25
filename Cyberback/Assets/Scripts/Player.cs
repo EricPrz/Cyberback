@@ -11,8 +11,8 @@ public class Player : MonoBehaviour
     [SerializeField] public Controller controller;
     //[SerializeField] public float damage;
     //[SerializeField] public float range;
-    private float currentHp;
-    [SerializeField] private float maxHp;
+    public float currentHp;
+    [SerializeField] public float maxHp;
     [SerializeField] private Text hpText;
 
     private float shield;

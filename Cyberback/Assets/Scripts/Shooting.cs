@@ -36,7 +36,7 @@ public class Shooting : MonoBehaviour
 
             if (playerHit != null)
             {
-                playerHit.Hit(player.currentWeapon.damage);
+                playerHit.Hit(player.currentWeapon.damage * (1 + ((player.maxHp - player.currentHp) * 1 / player.maxHp)));
             }
 
         }
