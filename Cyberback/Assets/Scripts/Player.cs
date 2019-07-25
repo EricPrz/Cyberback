@@ -15,6 +15,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float maxHp;
     [SerializeField] private Text hpText;
 
+    private float shield;
+
     [SerializeField] private float timeToHeal;
     private float timeRemainingToHeal;
     [SerializeField] private float healingPerSecond;
@@ -33,8 +35,25 @@ public class Player : MonoBehaviour
 
     public float Hit(float damage)
     {
+        if (shield >= damage)
+        {
+            hitShield(damage);
+            return 0;
+        }
+        else if (shield > 0 && shield < damage)
+        {
+            damage = damage - shield;
+            hitShield(shield);
+        }
+
         timeRemainingToHeal = timeToHeal;
         return SetHpTo(currentHp - damage);
+    }
+
+    private void hitShield(float damage)
+    {
+        shield -= damage;
+        UpdateHealthVisuals();
     }
 
     public float Heal(float quantity)
@@ -44,16 +63,21 @@ public class Player : MonoBehaviour
 
     private float SetHpTo(float newHp)
     {
-        currentHp = Mathf.Clamp( newHp, 0f, maxHp );
-        hpText.text = currentHp.ToString();
+        currentHp = Mathf.Clamp(newHp, 0f, maxHp);
+        UpdateHealthVisuals();
         return currentHp;
-    }    
-    
+    }
+
+    private void UpdateHealthVisuals()
+    {
+        hpText.text = Mathf.Round(currentHp).ToString() + " / " + Mathf.Round(shield).ToString();
+    }
+
     private void Update()
     {
         timeRemainingToHeal -= Time.deltaTime;
 
-        if(currentHp < maxHp)
+        if (currentHp < maxHp)
             if (timeRemainingToHeal <= 0)
                 Heal(healingPerSecond * Time.deltaTime);
 
@@ -73,5 +97,28 @@ public class Player : MonoBehaviour
         currentWeaponNumnber = weaponNumber;
         currentWeapon = weapons[currentWeaponNumnber];
         weaponText.text = currentWeapon.ToString();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log(other.name);
+
+        Shield shield = other.gameObject.GetComponent<Shield>();
+
+        if (shield == null)
+            return;
+
+        if (ApplyShield(shield.ammount))
+            Destroy(shield.gameObject);
+    }
+
+    private bool ApplyShield(float ammount)
+    {
+        if (shield >= ammount)
+            return false;
+
+        shield = ammount;
+        UpdateHealthVisuals();
+        return true;
     }
 }
