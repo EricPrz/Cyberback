@@ -65,6 +65,13 @@ public class Player : MonoBehaviour
     {
         currentHp = Mathf.Clamp(newHp, 0f, maxHp);
         UpdateHealthVisuals();
+
+        if (currentHp <= 0)
+        {
+            GameManager.Instance.Respawn(gameObject);
+            return SetHpTo(maxHp);
+        }
+
         return currentHp;
     }
 
