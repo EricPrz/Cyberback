@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: Boomy
   fireRate: 3
-  damage: 30
-  range: 30
+  damage: 50
+  range: 60
   isExplosive: 1

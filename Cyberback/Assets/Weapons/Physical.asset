@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: "Pu\xF1os"
   fireRate: 0.5
-  damage: 5
+  damage: 15
   range: 100
   isExplosive: 0

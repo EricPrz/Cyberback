@@ -15,5 +15,5 @@ MonoBehaviour:
   weaponName: Tesla
   fireRate: 1.5
   damage: 15
-  range: 50
+  range: 30
   isExplosive: 0

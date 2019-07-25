@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 #pragma warning disable 0649
+
 public class Player : MonoBehaviour
 {
 
@@ -15,6 +16,10 @@ public class Player : MonoBehaviour
     [SerializeField] public float maxHp;
     [SerializeField] private Text hpText;
 
+    [SerializeField] private Text scoreText;
+    private float scorePerKill = 1;
+    private float score;
+    
     private float shield;
 
     [SerializeField] private float timeToHeal;
@@ -31,6 +36,8 @@ public class Player : MonoBehaviour
     {
         currentHp = maxHp;
         SetCurrentWeapon(0);
+
+        score = 0;
     }
 
     public float Hit(float damage)
@@ -68,11 +75,18 @@ public class Player : MonoBehaviour
 
         if (currentHp <= 0)
         {
+            score = score + scorePerKill;
+            UpdateScoreVisuals();
             GameManager.Instance.Respawn(gameObject);
             return SetHpTo(maxHp);
         }
 
         return currentHp;
+    }
+
+    private void UpdateScoreVisuals()
+    {
+        scoreText.text = Math.Round(score).ToString();
     }
 
     private void UpdateHealthVisuals()
