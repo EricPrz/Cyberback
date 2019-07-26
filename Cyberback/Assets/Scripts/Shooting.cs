@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -40,6 +41,10 @@ public class Shooting : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, player.currentWeapon.range))
         {
+
+            if (player.currentWeapon.isExplosive)
+                ProcessExplosion(hit.point, player.currentWeapon.radius, player.currentWeapon.force);
+          
             Player playerHit = hit.transform.gameObject.GetComponent<Player>();
 
             if (playerHit != null)
@@ -60,5 +65,35 @@ public class Shooting : MonoBehaviour
     private void UpdateScoreVisuals()
     {
         scoreText.text = Mathf.Round(score).ToString();
+    }
+
+
+
+
+
+    private void ProcessExplosion(Vector3 contactPoint, float radius, float maxForce)
+    {
+        Collider[] hitColliders = Physics.OverlapSphere(contactPoint, radius);
+
+        foreach (Collider col in hitColliders)
+        {
+            Rigidbody rb = col.attachedRigidbody;
+
+            if (rb != null)
+            {
+                Vector3 direction = col.ClosestPoint(contactPoint) - contactPoint;
+
+                float forceToApply = maxForce / radius * direction.magnitude;
+
+                rb.AddForce(forceToApply * direction.normalized, ForceMode.Impulse);
+            }
+
+
+        }
+
+
+
+
+
     }
 }

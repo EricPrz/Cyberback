@@ -11,6 +11,8 @@ public class Weapon : ScriptableObject
     public float damage;
     public float range;
     public bool isExplosive;
+    public float radius;
+    public float force;
 
     public override string ToString()
     {
