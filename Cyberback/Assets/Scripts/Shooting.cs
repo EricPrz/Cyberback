@@ -16,8 +16,8 @@ public class Shooting : MonoBehaviour
     private Camera fpsCam;
     
     [SerializeField] private Text scoreText;
-    [SerializeField] private float scorePerKill = 1;
-    private float score;
+    [SerializeField] private int scorePerKill = 1;
+    private int score;
 
     private void Start()
     {
@@ -50,6 +50,7 @@ public class Shooting : MonoBehaviour
 
                     score += scorePerKill;
                     UpdateScoreVisuals();
+                    GameManager.Instance.NotifyScore(player, score);
                 }
             }
 
