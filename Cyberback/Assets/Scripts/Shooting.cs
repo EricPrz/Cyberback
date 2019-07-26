@@ -90,10 +90,6 @@ public class Shooting : MonoBehaviour
 
 
         }
-
-
-
-
-
     }
+
 }
