@@ -16,9 +16,7 @@ public class Player : MonoBehaviour
     [SerializeField] public float maxHp;
     [SerializeField] private Text hpText;
 
-    [SerializeField] private Text scoreText;
-    private float scorePerKill = 1;
-    private float score;
+    //[SerializeField] private float scoreGoal;
     
     private float shield;
 
@@ -36,8 +34,6 @@ public class Player : MonoBehaviour
     {
         currentHp = maxHp;
         SetCurrentWeapon(0);
-
-        score = 0;
     }
 
     public float Hit(float damage)
@@ -45,7 +41,7 @@ public class Player : MonoBehaviour
         if (shield >= damage)
         {
             hitShield(damage);
-            return 0;
+            return currentHp;
         }
         else if (shield > 0 && shield < damage)
         {
@@ -57,10 +53,11 @@ public class Player : MonoBehaviour
         return SetHpTo(currentHp - damage);
     }
 
-    private void hitShield(float damage)
+    private float hitShield(float damage)
     {
         shield -= damage;
         UpdateHealthVisuals();
+        return shield;
     }
 
     public float Heal(float quantity)
@@ -72,22 +69,10 @@ public class Player : MonoBehaviour
     {
         currentHp = Mathf.Clamp(newHp, 0f, maxHp);
         UpdateHealthVisuals();
-
-        if (currentHp <= 0)
-        {
-            score = score + scorePerKill;
-            UpdateScoreVisuals();
-            GameManager.Instance.Respawn(gameObject);
-            return SetHpTo(maxHp);
-        }
-
         return currentHp;
+
     }
 
-    private void UpdateScoreVisuals()
-    {
-        scoreText.text = Math.Round(score).ToString();
-    }
 
     private void UpdateHealthVisuals()
     {
@@ -111,6 +96,13 @@ public class Player : MonoBehaviour
 
             SetCurrentWeapon(newweaponnumber);
         }
+
+
+        if (currentHp <= 0)
+        {
+            GameManager.Instance.Respawn(gameObject);
+            SetHpTo(maxHp);
+        }
     }
 
     private void SetCurrentWeapon(int weaponNumber)
@@ -122,8 +114,6 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.name);
-
         Shield shield = other.gameObject.GetComponent<Shield>();
 
         if (shield == null)

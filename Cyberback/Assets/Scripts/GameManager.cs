@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+#pragma warning disable 0649
 public class GameManager : MonoBehaviour
 {
 
 
-    [SerializeField] GameObject[] spawns;
+    [SerializeField] private GameObject[] spawns;
 
 
     public static GameManager Instance;

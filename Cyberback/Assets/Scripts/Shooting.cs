@@ -1,28 +1,36 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 #pragma warning disable 0649
+[RequireComponent(typeof(Camera))]
 public class Shooting : MonoBehaviour
 {
 
     [SerializeField] private Player player;
     //[SerializeField] private float fireRate;
 
-    private float nextFire = 0;
+    private float timeToNextFire = 0;
     private Camera fpsCam;
     
+    [SerializeField] private Text scoreText;
+    [SerializeField] private float scorePerKill = 1;
+    private float score;
+
     private void Start()
     {
         fpsCam = GetComponent<Camera>();
+
+        score = 0;
     }
 
     private void Update()
     {
-        if (player.controller.IsShooting() && Time.time >= nextFire)
+        if (player.controller.IsShooting() && Time.time >= timeToNextFire)
         {
-            nextFire = Time.time + player.currentWeapon.fireRate;
+            timeToNextFire = Time.time + player.currentWeapon.fireRate;
             Shoot();
         }
     }
@@ -36,9 +44,20 @@ public class Shooting : MonoBehaviour
 
             if (playerHit != null)
             {
-                playerHit.Hit(player.currentWeapon.damage * (1 + ((player.maxHp - player.currentHp) * 1 / player.maxHp)));
+                if (playerHit.Hit(player.currentWeapon.damage * (1 + ((player.maxHp - player.currentHp) * 1 / player.maxHp))) <= 0)
+                {
+                    //Other player dead
+
+                    score += scorePerKill;
+                    UpdateScoreVisuals();
+                }
             }
 
         }
+    }
+
+    private void UpdateScoreVisuals()
+    {
+        scoreText.text = Mathf.Round(score).ToString();
     }
 }
