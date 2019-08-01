@@ -11,6 +11,8 @@ public class Shooting : MonoBehaviour
 {
 
     [SerializeField] private Player player;
+
+    [SerializeField] private GameObject explosionPrefab;
     //[SerializeField] private float fireRate;
 
     private float timeToNextFire = 0;
@@ -43,7 +45,8 @@ public class Shooting : MonoBehaviour
         {
 
             if (player.currentWeapon.isExplosive)
-                ProcessExplosion(hit.point, player.currentWeapon.radius, player.currentWeapon.force);
+                Instantiate(explosionPrefab, hit.point, Quaternion.identity).GetComponent<Explosion>().Explode(player.currentWeapon.radius, player.currentWeapon.force);
+                        
           
             Player playerHit = hit.transform.gameObject.GetComponent<Player>();
 
@@ -71,25 +74,6 @@ public class Shooting : MonoBehaviour
 
 
 
-    private void ProcessExplosion(Vector3 contactPoint, float radius, float maxForce)
-    {
-        Collider[] hitColliders = Physics.OverlapSphere(contactPoint, radius);
-
-        foreach (Collider col in hitColliders)
-        {
-            Rigidbody rb = col.attachedRigidbody;
-
-            if (rb != null)
-            {
-                Vector3 direction = col.ClosestPoint(contactPoint) - contactPoint;
-
-                float forceToApply = maxForce / radius * direction.magnitude;
-
-                rb.AddForce(forceToApply * direction.normalized, ForceMode.Impulse);
-            }
-
-
-        }
-    }
+    
 
 }

@@ -820,6 +820,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 7292711635929139440}
+  explosionPrefab: {fileID: 2373589708791446506, guid: f4f18f5622f17a542a59409b0ba1f447,
+    type: 3}
   scoreText: {fileID: 4892033654162349364}
   scorePerKill: 1
 --- !u!1001 &1290830977385640740
