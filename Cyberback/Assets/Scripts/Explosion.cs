@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+#pragma warning disable 0649
 public class Explosion : MonoBehaviour
 {
 
@@ -17,6 +17,13 @@ public class Explosion : MonoBehaviour
 
         foreach (Collider col in hitColliders)
         {
+
+            //SEARCH FOR PLAYER COMPONENT
+             // if player component exist --> Damage to player
+             // if player component does not exist:
+                // search for "DestroyableObject" component
+                // if component exist --> Damage the object.
+
             Rigidbody rb = col.attachedRigidbody;
 
             if (rb != null)

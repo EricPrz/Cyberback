@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontalAxis: MoveX1
   verticalAxis: MoveY1
+  suicideButton: Suicide1
   jumpButton: Jump1
   sprintButton: Sprint1
   shootButton: Fire1
