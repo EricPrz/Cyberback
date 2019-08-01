@@ -17,5 +17,5 @@ MonoBehaviour:
   damage: 50
   range: 60
   isExplosive: 1
-  radius: 7
+  radius: 3
   force: 60
