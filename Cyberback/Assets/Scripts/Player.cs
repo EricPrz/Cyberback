@@ -98,7 +98,7 @@ public class Player : MonoBehaviour
         }
 
 
-        if (currentHp <= 0)
+        if ((currentHp <= 0) || controller.IsSuicide())
         {
             GameManager.Instance.Respawn(gameObject);
             SetHpTo(maxHp);

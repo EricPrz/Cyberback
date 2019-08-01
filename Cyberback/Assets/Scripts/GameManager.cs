@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 
 
     [SerializeField] private GameObject[] spawns;
-    [SerializeField] private int WinScore;
+    
 
     public static GameManager Instance;
     private void Awake()
@@ -46,12 +46,12 @@ public class GameManager : MonoBehaviour
 
     public bool NotifyScore(Player player, int score)
     {
-        if (score >= WinScore)
+        /*if (score >= WinScore)
         {
             Debug.Log(player.gameObject.name + " wins!");
             //TODO: Stop game or reset game
             return true;
-        }
+        }*/
         
         return false;
     }

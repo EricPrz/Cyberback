@@ -11,7 +11,7 @@ public class Controller : ScriptableObject
     [SerializeField] private string horizontalAxis;
     [SerializeField] private string verticalAxis;
 
-
+    [SerializeField] private string suicideButton;
     [SerializeField] private string jumpButton;
     [SerializeField] private string sprintButton;
     [SerializeField] private string shootButton;
@@ -22,6 +22,10 @@ public class Controller : ScriptableObject
     [SerializeField] private string mouseYInputName;
     [SerializeField] private float mouseSensitivity;
 
+    public bool IsSuicide()
+    {
+        return Input.GetButtonDown(suicideButton);
+    }
 
     public bool IsSwapingWeapon()
     {
