@@ -6,7 +6,7 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
 
-    [SerializeField] private float movementSpeed;
+    private float movementSpeed;
     [SerializeField] private float walkSpeed;
     [SerializeField] private float sprintSpeed;
     [SerializeField] private float jumpMultiplier;

@@ -21,4 +21,4 @@ MonoBehaviour:
   swapWeaponButton: SwapWeapon1
   mouseXInputName: AimX1
   mouseYInputName: AimY1
-  mouseSensitivity: 76
+  mouseSensitivity: 120
