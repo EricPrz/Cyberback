@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour
     
 
     public static GameManager Instance;
+
+    [SerializeField] private int WinScore;
+
     private void Awake()
     {
         if (Instance != null)
@@ -46,12 +49,12 @@ public class GameManager : MonoBehaviour
 
     public bool NotifyScore(Player player, int score)
     {
-        /*if (score >= WinScore)
+        if (score >= WinScore)
         {
             Debug.Log(player.gameObject.name + " wins!");
             //TODO: Stop game or reset game
             return true;
-        }*/
+        }
         
         return false;
     }

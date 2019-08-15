@@ -29,11 +29,17 @@ public class Player : MonoBehaviour
     [HideInInspector] private int currentWeaponNumnber;
     [SerializeField] private Text weaponText;
 
+    [SerializeField] private Text scoreText;
+    [SerializeField] private int scorePerKill = 1;
+    private int score;
+
 
     void Start()
     {
         currentHp = maxHp;
         SetCurrentWeapon(0);
+        score = 10;
+        UpdateScoreVisuals();
     }
 
     public float Hit(float damage)
@@ -60,6 +66,25 @@ public class Player : MonoBehaviour
         return shield;
     }
 
+    internal void RegisterKill()
+    {
+        score += scorePerKill;
+        UpdateScoreVisuals();
+        GameManager.Instance.NotifyScore(this, score);
+    }
+    internal void RegisterDead()
+    {
+        score -= scorePerKill;
+        if (score < 0)
+            score = 0;
+        UpdateScoreVisuals();
+        GameManager.Instance.NotifyScore(this, score);
+    }
+    private void UpdateScoreVisuals()
+    {
+        scoreText.text = Mathf.Round(score).ToString();
+    }
+
     public float Heal(float quantity)
     {
         return SetHpTo(currentHp + quantity);
@@ -67,10 +92,13 @@ public class Player : MonoBehaviour
 
     private float SetHpTo(float newHp)
     {
+
+
         currentHp = Mathf.Clamp(newHp, 0f, maxHp);
         UpdateHealthVisuals();
         return currentHp;
 
+        
     }
 
     
@@ -102,6 +130,7 @@ public class Player : MonoBehaviour
         if ((currentHp <= 0) || controller.IsSuicide())
         {
             GameManager.Instance.Respawn(gameObject);
+            RegisterDead();
             SetHpTo(maxHp);
         }
 

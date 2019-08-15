@@ -18,15 +18,11 @@ public class Shooting : MonoBehaviour
     private float timeToNextFire = 0;
     private Camera fpsCam;
     
-    [SerializeField] private Text scoreText;
-    [SerializeField] private int scorePerKill = 1;
-    private int score;
+
 
     private void Start()
     {
         fpsCam = GetComponent<Camera>();
-
-        score = 0;
     }
 
     private void Update()
@@ -56,9 +52,7 @@ public class Shooting : MonoBehaviour
                     {
                         //Other player dead
 
-                        score += scorePerKill;
-                        UpdateScoreVisuals();
-                        GameManager.Instance.NotifyScore(player, score);
+                        player.RegisterKill();
                     }
                 }
             }
@@ -72,10 +66,7 @@ public class Shooting : MonoBehaviour
         return (player.currentWeapon.damage * (1 + ((player.maxHp - player.currentHp) * 1 / player.maxHp)));
     }
 
-    private void UpdateScoreVisuals()
-    {
-        scoreText.text = Mathf.Round(score).ToString();
-    }
+
 
 
 

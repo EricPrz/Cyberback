@@ -668,7 +668,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 11400000, guid: 670ce31455561d242b39dd6c6295087e, type: 2}
-  currentHp: 0
   maxHp: 100
   hpText: {fileID: 5823118649597521867}
   timeToHeal: 5
@@ -679,6 +678,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e08ebb5da7d9ff54d84b40f3f353407d, type: 2}
   currentWeapon: {fileID: 0}
   weaponText: {fileID: 8247726045272677736}
+  scoreText: {fileID: 4892033654162349364}
+  scorePerKill: 1
 --- !u!114 &7580102253014802413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -824,8 +825,6 @@ MonoBehaviour:
   player: {fileID: 7292711635929139440}
   explosionPrefab: {fileID: 2373589708791446506, guid: f4f18f5622f17a542a59409b0ba1f447,
     type: 3}
-  scoreText: {fileID: 4892033654162349364}
-  scorePerKill: 1
 --- !u!1001 &1290830977385640740
 PrefabInstance:
   m_ObjectHideFlags: 0
