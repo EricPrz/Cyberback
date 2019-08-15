@@ -45,14 +45,14 @@ public class Shooting : MonoBehaviour
         {
 
             if (player.currentWeapon.isExplosive)
-                Instantiate(explosionPrefab, hit.point, Quaternion.identity).GetComponent<Explosion>().Explode(player.currentWeapon.radius, player.currentWeapon.force, player.currentWeapon.damage);
+                Instantiate(explosionPrefab, hit.point, Quaternion.identity).GetComponent<Explosion>().Explode(player.currentWeapon.radius, player.currentWeapon.force, GetCurrentDamage() );
             else
             {
                 Player playerHit = hit.transform.gameObject.GetComponent<Player>();
 
                 if (playerHit != null)
                 {
-                    if (playerHit.Hit(player.currentWeapon.damage * (1 + ((player.maxHp - player.currentHp) * 1 / player.maxHp))) <= 0)
+                    if (playerHit.Hit(GetCurrentDamage()) <= 0)
                     {
                         //Other player dead
 
@@ -65,6 +65,11 @@ public class Shooting : MonoBehaviour
           
 
         }
+    }
+
+    private float GetCurrentDamage()
+    {
+        return (player.currentWeapon.damage * (1 + ((player.maxHp - player.currentHp) * 1 / player.maxHp)));
     }
 
     private void UpdateScoreVisuals()

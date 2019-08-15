@@ -37,23 +37,17 @@ public class Explosion : MonoBehaviour
         foreach (Collider col in hitColliders)
         {
             Vector3 direction = col.ClosestPoint(transform.position) - transform.position;
+            float proportionalDamage = maxDamage - (maxDamage / radius * direction.magnitude);
 
-            Debug.DrawRay(transform.position, direction, Color.green, 5, true);
-
+            
             Player player = col.GetComponent<Player>();
             if (player != null)
-            {
-                float proportionalDamage = maxDamage - (maxDamage / radius * direction.magnitude);
-                Debug.DrawRay(transform.position, direction, Color.blue, 5, true);
                 player.Hit(proportionalDamage);                
-            }     
-            
-            //SEARCH FOR PLAYER COMPONENT
-            // if player component exist --> Damage to player
-            // if player component does not exist:
-            // search for "DestroyableObject" component
-            // if component exist --> Damage the object.
-            
+
+            DestructiveObject destructiveObject = col.GetComponent<DestructiveObject>();
+            if (destructiveObject != null)
+                destructiveObject.Hit(proportionalDamage);
+
             Rigidbody rb = col.attachedRigidbody;
             if (rb != null)
             {
