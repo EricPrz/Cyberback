@@ -11,7 +11,7 @@ public class Controller : ScriptableObject
     [SerializeField] private string horizontalAxis;
     [SerializeField] private string verticalAxis;
 
-    [SerializeField] private string suicideButton;
+    [SerializeField] public string suicideButton;
     [SerializeField] private string jumpButton;
     [SerializeField] private string sprintButton;
     [SerializeField] private string shootButton;

@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -11.519989, y: -102.100006}
+  m_AnchoredPosition: {x: -20, y: -130}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 1, y: 0}
 --- !u!222 &4995866696306977700
@@ -472,7 +472,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 7580102253137409953}
-  m_PlaneDistance: 1
+  m_PlaneDistance: 0.4
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -843,6 +843,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 2534866581884222612, guid: ec0747f8c3ce965488ced8389322ea76,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: ec0747f8c3ce965488ced8389322ea76,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -918,11 +923,6 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: fce10deeda9f4384ea0ba6fba21d1abb, type: 2}
-    - target: {fileID: 2534866581884222612, guid: ec0747f8c3ce965488ced8389322ea76,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec0747f8c3ce965488ced8389322ea76, type: 3}
 --- !u!4 &6094292931340769342 stripped

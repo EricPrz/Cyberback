@@ -18,4 +18,4 @@ MonoBehaviour:
   range: 60
   isExplosive: 1
   radius: 3
-  force: 60
+  force: 65

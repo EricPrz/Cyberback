@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     [SerializeField] public Controller controller;
     //[SerializeField] public float damage;
     //[SerializeField] public float range;
-    public float currentHp;
+    public float currentHp { get; private set; }
     [SerializeField] public float maxHp;
     [SerializeField] private Text hpText;
 
@@ -73,6 +73,7 @@ public class Player : MonoBehaviour
 
     }
 
+    
 
     private void UpdateHealthVisuals()
     {
@@ -103,6 +104,8 @@ public class Player : MonoBehaviour
             GameManager.Instance.Respawn(gameObject);
             SetHpTo(maxHp);
         }
+
+        
     }
 
     private void SetCurrentWeapon(int weaponNumber)
