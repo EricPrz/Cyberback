@@ -14,7 +14,7 @@ public class Explosion : MonoBehaviour
     public void Explode(float radius, float maxForce, float maxDamage)
     {
         ExplosionVisuals.SetActive(true);
-        ExplosionVisuals.transform.localScale = new Vector3(radius, radius, radius);
+        ExplosionVisuals.transform.localScale = new Vector3(radius / 2, radius / 2, radius / 2);
 
         List<Collider> hitColliders = Physics.OverlapSphere(transform.position, radius).ToList();
 
@@ -60,10 +60,6 @@ public class Explosion : MonoBehaviour
 
     }
 
-    private void isPlayerExplosive()
-    {
-        throw new NotImplementedException();
-    }
 
     public void DestroyExplosion()
     {
